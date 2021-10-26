@@ -5,12 +5,12 @@
 #define ftmodules_h
 
 #include "Arduino.h"
+#include "Simpletypes.h"
 
 class Ftmodules
 {
 
 public:
-	// Ftmodules();
 
 	// MotorDriver class -------------------------------------------------------
 
@@ -48,12 +48,14 @@ public:
 
 	public:
 		SevenSegDisplay(int i2CPort);
-		Clear();
-		Test();
-		Show(char *str);
-		Flash(unsigned int ms);
-		Rotate(unsigned int ms);
-		Stop();
+
+		void Clear();
+		void Test();
+		void Show(char *str);
+		void Hold(uint ms);
+		void Flash(uint ms);
+		void Rotate(uint ms);
+		void Stop();
 
 		// Commands for 7-segment display module
 
@@ -64,12 +66,17 @@ public:
 			cmdDisplay = 0x12,
 			cmdFlash = 0x13,
 			cmdRotate = 0x14,
+			cmdHold = 0x15,
 			cmdStop = 0x40,
 		};
 
 	private:
 		int _i2cport;
+		void i2cCommand(int cmd);
+		void i2cCommand(int cmd, int param1);
+		void i2cCommand(int cmd, uint param1);
+		void i2cCommand(int cmd, char *param1);
 	};
 };
 
-#endif // ftmodules
+#endif // ftmodules_h
