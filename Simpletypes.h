@@ -1,6 +1,7 @@
 /*
   Simpletypes.h
 */
+
 #ifndef simpletypes_h
 #define simpletypes_h
 
