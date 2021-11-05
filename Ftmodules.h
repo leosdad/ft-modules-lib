@@ -8,40 +8,59 @@
 #include <Arduino.h>
 #include <Simpletypes.h>
 
-class Ftmodules
+class FtModules
 {
   public:
+
+	// ----------------------------- I²C
+
 	class I2C
 	{
 	  public:
-		void Init(int address);
-		void Cmd(byte cmd);
-		void Cmd(byte cmd, byte param);
-		void Cmd(byte cmd, byte param1, byte param2);
-		void Cmd(byte cmd, byte param1, byte param2, byte param3);
-		void Cmd(byte cmd, byte param1, byte param2, byte param3, byte param4);
-		void Cmd(int cmd, char *param);
-
-	  private:
-		byte _address;
+		static void Cmd(int address, byte cmd);
+		static void Cmd(int address, byte cmd, byte param);
+		static void Cmd(int address, byte cmd, byte param1, byte param2);
+		static void Cmd(int address, byte cmd, byte param1, byte param2, byte param3);
+		static void Cmd(int address, byte cmd, byte param1, byte param2, byte param3, byte param4);
+		static void Cmd(int address, int cmd, char *param);
 	};
 
-	class Sounds
+	// ----------------------------- Seven-segment display
+
+	class SevenSegDisplay
 	{
-	  public:
-		void Init(I2C i2c, int soundCommand);
-		void Play(int soundIndex);
 
-	  private:
-		Ftmodules::I2C _i2c;
-		int _soundCommand;
+	  public:
+		// void Clear(int address);
+		// void Test(int address);
+		// void Display(int address, char *str);
+		// void Hold(int address, uint ms);
+		// void Flash(int address, uint ms);
+		// void Rotate(int address, uint ms);
+		// void Stop(int address);
+
+		// Commands for 7-segment display module
+		enum Command
+		{
+			cmdBlank = 0x10,
+			cmdTest = 0x11,
+			cmdDisplay = 0x12,
+			cmdFlash = 0x13,
+			cmdRotate = 0x14,
+			cmdHold = 0x15,
+			cmdStop = 0x40,
+		};
+
+	  	static const byte maxDisplayChars = 80;
 	};
+
+	// ----------------------------- Motor driver
 
 	class MotorDriver
 	{
 	  public:
 
-		MotorDriver(Ftmodules::I2C i2c);
+		MotorDriver(FtModules::I2C i2c);
 
 		// Commands for motor driver module
 		enum Command
@@ -62,37 +81,9 @@ class Ftmodules
 		};
 
 	  private:
-		Ftmodules::I2C _i2c;
+		FtModules::I2C _i2c;
 	};
 
-	class SevenSegDisplay
-	{
-
-	  public:
-		void Init(I2C i2c);
-		void Clear();
-		void Test();
-		void Show(char *str);
-		void Hold(uint ms);
-		void Flash(uint ms);
-		void Rotate(uint ms);
-		void Stop();
-
-		// Commands for 7-segment display module
-		enum Command
-		{
-			cmdBlank = 0x10,
-			cmdTest = 0x11,
-			cmdDisplay = 0x12,
-			cmdFlash = 0x13,
-			cmdRotate = 0x14,
-			cmdHold = 0x15,
-			cmdStop = 0x40,
-		};
-
-	  private:
-		Ftmodules::I2C _i2c;
-	};
 };
 
 #endif // ftmodules_h

@@ -4,45 +4,54 @@
 
 #include <Arduino.h>
 #include <Wire.h>
-#include "Ftmodules.h"
+#include "FtModules.h"
 
 #pragma region I²C command functions -------------------------------------------
 
-byte _address;
+// byte FtModules::I2C::address;
 
-void Ftmodules::I2C::Init(int address)
-{
-	Wire.begin();
-	_address = address;
-}
+// void FtModules::I2C::Init(int address)
+// {
+// 	// Wire.begin();
+// 	address = address;
+// }
 
-void Ftmodules::I2C::Cmd(byte cmd)
+// int FtModules::I2C::GetAddress()
+// {
+// 	return address;
+// }
+
+void FtModules::I2C::Cmd(int address, byte cmd)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) { Serial.print("Zero 1: "); Serial.println(cmd); }
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.endTransmission();
 }
 
-void Ftmodules::I2C::Cmd(byte cmd, byte param)
+void FtModules::I2C::Cmd(int address, byte cmd, byte param)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) Serial.println("Zero 2");
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.write(param);
 	Wire.endTransmission();
 }
 
-void Ftmodules::I2C::Cmd(byte cmd, byte param1, byte param2)
+void FtModules::I2C::Cmd(int address, byte cmd, byte param1, byte param2)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) Serial.println("Zero 3");
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.write(param1);
 	Wire.write(param2);
 	Wire.endTransmission();
 }
 
-void Ftmodules::I2C::Cmd(byte cmd, byte param1, byte param2, byte param3)
+void FtModules::I2C::Cmd(int address, byte cmd, byte param1, byte param2, byte param3)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) Serial.println("Zero 4");
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.write(param1);
 	Wire.write(param2);
@@ -50,9 +59,10 @@ void Ftmodules::I2C::Cmd(byte cmd, byte param1, byte param2, byte param3)
 	Wire.endTransmission();
 }
 
-void Ftmodules::I2C::Cmd(byte cmd, byte param1, byte param2, byte param3, byte param4)
+void FtModules::I2C::Cmd(int address, byte cmd, byte param1, byte param2, byte param3, byte param4)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) Serial.println("Zero 5");
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.write(param1);
 	Wire.write(param2);
@@ -61,9 +71,10 @@ void Ftmodules::I2C::Cmd(byte cmd, byte param1, byte param2, byte param3, byte p
 	Wire.endTransmission();
 }
 
-void Ftmodules::I2C::Cmd(int cmd, char *param)
+void FtModules::I2C::Cmd(int address, int cmd, char *param)
 {
-	Wire.beginTransmission(_address);
+	// if(address == 0) Serial.println("Zero 6");
+	Wire.beginTransmission(address);
 	Wire.write(cmd);
 	Wire.write(param);
 	Wire.endTransmission();
