@@ -51,13 +51,22 @@ enum class outState
 	ONESHOT,
 };
 
+/*
+ * Sounds provided by https://freesound.org/
+ */
+
 enum soundNames
 {
-	DING = 1,
-	BOING,
-	WHISTLE,
-	CLANG,
-	BAMBOO,
+	DING = 1,		// Ding-ding-small-bell by JohnsonBrandEditing
+	DRAIN,			// Water-go-down-the-hole by Incarnadine
+	GLASS,			// Glass-break-medium-jar by RoganMcDougald
+	CLANG,			// Donk-metal-glass by EminYILDIRIM
+	FAUCET,			// Water-pour-sink-a by InspectorJ (www.jshaw.co.uk)
+	CRASH,			// Crashing glassbottles by RackhamsReverse
+	FRYING,			// Food-frying by TyroneW
+	BUBBLES,		// Bubbles by ManuelAurreaf
+	CABINET,		// Glass-shake-cabinet-closet by Garuda1982
+	SHAKE,			// Water by TechyActor15
 };
 
 #endif // pb_child_h
