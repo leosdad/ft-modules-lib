@@ -67,6 +67,7 @@ enum soundNames
 	BUBBLES,		// Bubbles by ManuelAurreaf
 	CABINET,		// Glass-shake-cabinet-closet by Garuda1982
 	SHAKE,			// Water by TechyActor15
+	BELL,			// Glass Bell Ringing by f-r-a-g-i-l-e
 };
 
 #endif // pb_child_h
