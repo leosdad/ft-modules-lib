@@ -1,5 +1,5 @@
 /*
-  ftmodules.h
+  Header for fischertechnik modules class
 */
 
 #ifndef ftmodules_h
